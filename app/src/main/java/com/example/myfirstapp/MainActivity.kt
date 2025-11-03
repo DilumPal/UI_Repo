@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myfirstapp.ui.theme.MyFirstAppTheme
 
-// MainActivity: The entry point of your Android application
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// --- Root Composable: Defines the Scaffold (Content + Bottom Bar) ---
 @Composable
 fun ArticleScreen() {
     Scaffold(
@@ -46,13 +44,11 @@ fun ArticleScreen() {
     }
 }
 
-// --- Bottom Navigation Bar Composable ---
 @Composable
 fun BottomNavBar() {
     NavigationBar(
-        containerColor = Color.Black, // Dark background
+        containerColor = Color.Black, 
     ) {
-        // NEWS Item (Selected)
         NavigationBarItem(
             selected = true,
             onClick = { /* Navigate to News */ },
@@ -60,7 +56,6 @@ fun BottomNavBar() {
             label = { Text("NEWS", color = Color.White) },
             colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Black)
         )
-        // PROMOS Item (Unselected)
         NavigationBarItem(
             selected = false,
             onClick = { /* Navigate to Promos */ },
@@ -68,7 +63,6 @@ fun BottomNavBar() {
             label = { Text("PROMOS", color = Color.Gray) },
             colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Black)
         )
-        // SETTINGS Item (Unselected)
         NavigationBarItem(
             selected = false,
             onClick = { /* Navigate to Settings */ },
@@ -79,13 +73,11 @@ fun BottomNavBar() {
     }
 }
 
-// --- Main Content Composable (Image and Text Overlay) ---
 @Composable
 fun ArticleContent(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxSize()
     ) {
-        // 1. The main image (Ensure 'city_image' is in res/drawable)
         Image(
             painter = painterResource(R.drawable.city_image), // Correct resource reference
             contentDescription = "Cityscape",
@@ -93,7 +85,6 @@ fun ArticleContent(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize()
         )
 
-        // 2. The Text and Metadata Container (positioned at the bottom)
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)
@@ -102,7 +93,6 @@ fun ArticleContent(modifier: Modifier = Modifier) {
         ) {
             TechChip()
 
-            // Main Title
             Text(
                 text = "The Future of Urban Living",
                 style = MaterialTheme.typography.headlineLarge,
@@ -112,25 +102,21 @@ fun ArticleContent(modifier: Modifier = Modifier) {
 
             Spacer(Modifier.height(16.dp))
 
-            // Metadata: Author and Read Time
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Author Info
                 Icon(Icons.Filled.Person, contentDescription = "Author", tint = Color.LightGray, modifier = Modifier.size(16.dp))
                 Spacer(Modifier.width(4.dp))
                 Text("Sarah Chen", color = Color.White.copy(alpha = 0.8f), style = MaterialTheme.typography.bodySmall)
 
                 Spacer(Modifier.width(16.dp))
 
-                // Read Time Info
                 Icon(Icons.Filled.Schedule, contentDescription = "Read Time", tint = Color.LightGray, modifier = Modifier.size(16.dp))
                 Spacer(Modifier.width(4.dp))
                 Text("8 min read", color = Color.White.copy(alpha = 0.8f), style = MaterialTheme.typography.bodySmall)
             }
         }
 
-        // 3. The Top Yellow/Orange Bar (aligned to the top center)
         Box(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -142,7 +128,6 @@ fun ArticleContent(modifier: Modifier = Modifier) {
     }
 }
 
-// --- Tech Chip Composable ---
 @Composable
 fun TechChip() {
     Box(
